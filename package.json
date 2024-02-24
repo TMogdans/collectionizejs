@@ -2,9 +2,9 @@
   "name": "collectionizejs",
   "version": "0.0.1",
   "description": "A laravel-like collections package",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "dist/collection.js",
+  "module": "dist/collection.mjs",
+  "types": "dist/collection.d.ts",
   "files": [
     "dist"
   ],
