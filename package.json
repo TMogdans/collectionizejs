@@ -1,0 +1,24 @@
+{
+  "name": "collectionizejs",
+  "version": "1.0.0",
+  "description": "A laravel-like collections package",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tmogdans/collectionizejs.git"
+  },
+  "keywords": [
+    "node",
+    "collections",
+    "array"
+  ],
+  "author": "Tobias Mogdans",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tmogdans/collectionizejs/issues"
+  },
+  "homepage": "https://github.com/tmogdans/collectionizejs#readme"
+}
