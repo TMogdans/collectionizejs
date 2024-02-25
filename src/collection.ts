@@ -33,12 +33,12 @@ class Collection {
             end = this.items.length + end;
         }
 
-        if (start > end) {
-            [start, end] = [end, start];
-        }
-
         if (start > this.items.length) {
             return new Collection();
+        }
+
+        if (start > end) {
+            [start, end] = [end, start];
         }
 
         if (end > this.items.length) {

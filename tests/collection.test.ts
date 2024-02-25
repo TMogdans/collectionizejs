@@ -792,3 +792,93 @@ describe ('concat appends the given array or collections values to the end of an
         expect(collection.all()).toEqual([1, 2, 3]);
     });
 });
+
+describe('slice', () => {
+    it('should return a new collection with the items from the given start index', () => {
+        // Given
+        const collection = new Collection([1, 2, 3, 4, 5]);
+
+        // When
+        const result = collection.slice(2);
+
+        // Then
+        expect(result.all()).toEqual([3, 4, 5]);
+    });
+
+    it('should return a new collection with the items from the given start index to the given end index', () => {
+        // Given
+        const collection = new Collection([1, 2, 3, 4, 5]);
+
+        // When
+        const result = collection.slice(2, 4);
+
+        // Then
+        expect(result.all()).toEqual([3, 4]);
+    });
+
+    it('should return a new collection without modifying the original collection', () => {
+        // Given
+        const collection = new Collection([1, 2, 3, 4, 5]);
+
+        // When
+        collection.slice(2);
+
+        // Then
+        expect(collection.all()).toEqual([1, 2, 3, 4, 5]);
+    });
+
+    it('should return an empty collection when the start index is greater than the collection length', () => {
+        // Given
+        const collection = new Collection([1, 2, 3, 4, 5]);
+
+        // When
+        const result = collection.slice(5);
+
+        // Then
+        expect(result.all()).toEqual([]);
+    });
+
+    it(' should return a new collection with the items from the given start index to the given end index when the start index is greater than the end index', () => {
+        // Given
+        const collection = new Collection([1, 2, 3, 4, 5]);
+
+        // When
+        const result = collection.slice(4, 2);
+
+        // Then
+        expect(result.all()).toEqual([3, 4]);
+    });
+
+    it('should return a new collection with the items from the given start index to the given end index when the start index is negative', () => {
+        // Given
+        const collection = new Collection([1, 2, 3, 4, 5]);
+
+        // When
+        const result = collection.slice(-3, -1);
+
+        // Then
+        expect(result.all()).toEqual([3, 4]);
+    });
+
+    it('it should return an empty collection when the start index is greater then the collection length', () => {
+        // Given
+        const collection = new Collection([1, 2, 3, 4, 5]);
+
+        // When
+        const result = collection.slice(6);
+
+        // Then
+        expect(result.all()).toEqual([]);
+    });
+
+    it('should limit the end index to the collection length when the end index is greater than the collection length', () => {
+        // Given
+        const collection = new Collection([1, 2, 3, 4, 5]);
+
+        // When
+        const result = collection.slice(2, 6);
+
+        // Then
+        expect(result.all()).toEqual([3, 4, 5]);
+    });
+});
