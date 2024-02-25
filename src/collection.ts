@@ -21,7 +21,7 @@ class Collection {
 
     all()
     {
-        return this.items;
+        return this.items.slice();
     }
 
     slice(start: number, end: number = this.items.length) {
