@@ -1,6 +1,6 @@
 {
   "name": "collectionizejs",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "A laravel-like collections package",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

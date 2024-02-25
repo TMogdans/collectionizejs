@@ -1,4 +1,4 @@
-import {Collection, collect} from '../src/collection';
+import Collection, { collect } from "../src/collection";
 
 describe('Collection', () => {
     it('should initialize an empty collection when no items are passed to the constructor', () => {
@@ -1787,5 +1787,25 @@ describe('iterator', () => {
         const result = iterator.next();
 
         expect(result).toEqual({done: false, value: 0});
+    });
+});
+
+describe('where', () => {
+    it('should return a new collection with the items filtered by a given key value pair', () => {
+        // Given
+        const collection = collect([
+            {name: 'John', age: 30},
+            {name: 'Jane', age: 25},
+            {name: 'Jim', age: 30},
+        ]);
+
+        // When
+        const result = collection.where('age', 30);
+
+        // Then
+        expect(result.all()).toEqual([
+            {name: 'John', age: 30},
+            {name: 'Jim', age: 30},
+        ]);
     });
 });

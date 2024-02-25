@@ -2,20 +2,20 @@ class Collection implements Iterable<number> {
     private readonly items: any[] = [];
     private counter = 0;
 
-  constructor(items: any[] = []) {
-    this.items = items;
-  }
+    constructor(items: any[] = []) {
+        this.items = items;
+    }
 
     [Symbol.iterator](): Iterator<number, any, undefined> {
         return this;
     }
 
-  next(): IteratorResult<number> {
-      return {
-          done: false,
-          value: this.counter++
-      }
-  }
+    next(): IteratorResult<number> {
+        return {
+            done: false,
+            value: this.counter++
+        }
+    }
 
     add(item: any) {
         this.items.push(item);
@@ -85,7 +85,7 @@ class Collection implements Iterable<number> {
         return this.map(item => item[key]);
     }
 
-    average(key: string|null = null) {
+    average(key: string | null = null) {
         const values = key ? this.pluck(key) : this;
 
         if (values.count() === 0) {
@@ -95,7 +95,7 @@ class Collection implements Iterable<number> {
         return values.sum() / values.count();
     }
 
-    sum(key: string|null = null) {
+    sum(key: string | null = null) {
         const values = key ? this.pluck(key) : this;
 
         return values.reduce((acc: number, value: number) => acc + value, 0);
@@ -105,7 +105,7 @@ class Collection implements Iterable<number> {
         return new Collection(this.items.reduce((acc: any[], item: any) => acc.concat(item), []));
     }
 
-    concat(items: any[]|Collection) {
+    concat(items: any[] | Collection) {
         if (items instanceof Collection) {
             items = items.all();
         }
@@ -113,7 +113,7 @@ class Collection implements Iterable<number> {
         return new Collection(this.items.concat(items));
     }
 
-    contains(keyOrValueOrClosure: string|number|((item: any) => boolean), value?: any) {
+    contains(keyOrValueOrClosure: string | number | ((item: any) => boolean), value?: any) {
         if (typeof keyOrValueOrClosure === 'function') {
             return this.items.some(keyOrValueOrClosure);
         }
@@ -125,11 +125,11 @@ class Collection implements Iterable<number> {
         return this.items.includes(keyOrValueOrClosure);
     }
 
-    includes(keyOrValueOrClosure: string|number|((item: any) => boolean), value?: any) {
+    includes(keyOrValueOrClosure: string | number | ((item: any) => boolean), value?: any) {
         return this.contains(keyOrValueOrClosure, value);
     }
 
-    diff(items: any[]|Collection) {
+    diff(items: any[] | Collection) {
         if (items instanceof Collection) {
             items = items.all();
         }
@@ -141,14 +141,14 @@ class Collection implements Iterable<number> {
         return this.items.indexOf(item);
     }
 
-    duplicates(key: string|null = null) {
+    duplicates(key: string | null = null) {
         const items = key ? this.pluck(key) : this;
         const filtered = items.filter((item: any, index: number) => items.indexOf(item) !== index);
 
         return filtered.unique();
     }
 
-    unique(key: string|null = null) {
+    unique(key: string | null = null) {
         const items = key ? this.pluck(key) : this;
 
         return items.filter((item: any, index: number) => items.indexOf(item) === index);
@@ -170,7 +170,7 @@ class Collection implements Iterable<number> {
         return new Collection(keys).unique();
     }
 
-    first(keyOrTest?: string|((item: any) => boolean)) {
+    first(keyOrTest?: string | ((item: any) => boolean)) {
         if (keyOrTest === undefined) {
             return this.items[0];
         }
@@ -182,7 +182,7 @@ class Collection implements Iterable<number> {
         return this.items.find(item => item[keyOrTest] !== undefined);
     }
 
-    last(keyOrCallback?: string|((item: any) => boolean)) {
+    last(keyOrCallback?: string | ((item: any) => boolean)) {
         if (keyOrCallback === undefined) {
             return this.items[this.items.length - 1];
         }
@@ -230,10 +230,14 @@ class Collection implements Iterable<number> {
     toJson() {
         return JSON.stringify(this.items);
     }
+
+    where(key: string, value: any) {
+        return new Collection(this.items.filter(item => item[key] === value));
+    }
 }
 
-function collect(items: any[] = []) {
+export function collect(items: any[] = []) {
     return new Collection(items);
 }
 
-export default { Collection, collect }
+export default Collection;
