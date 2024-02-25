@@ -236,4 +236,4 @@ function collect(items: any[] = []) {
     return new Collection(items);
 }
 
-export { Collection, collect };
+export default { Collection, collect }
